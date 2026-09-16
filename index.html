@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Isac Web</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            color: #222;
+        }
+
+        header {
+            background: #111;
+            color: white;
+            padding: 22px 15px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: #ccc;
+        }
+
+        .principal {
+            background: white;
+            text-align: center;
+            padding: 45px 20px;
+        }
+
+        .principal h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .principal p {
+            color: #666;
+            margin-bottom: 22px;
+            line-height: 1.5;
+        }
+
+        .pesquisa {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        section {
+            padding: 30px 18px;
+        }
+
+        section > h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .categoria,
+        .anuncio {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 14px;
+            box-shadow: 0 2px 8px #ddd;
+        }
+
+        .categoria h3,
+        .anuncio h3 {
+            margin-bottom: 8px;
+        }
+
+        .categoria p,
+        .anuncio p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .botao {
+            border: none;
+            background: #111;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 8px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .botao:hover {
+            opacity: 0.8;
+        }
+
+        .detalhes {
+            display: none;
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 14px;
+        }
+
+        .formulario {
+            background: white;
+            padding: 20px;
+            border-radius: 14px;
+        }
+
+        .formulario input,
+        .formulario textarea {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .mensagem {
+            display: none;
+            text-align: center;
+            background: #e7f7e7;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        footer {
+            background: #111;
+            color: #aaa;
+            text-align: center;
+            padding: 25px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🌐 Isac Web</h1>
+    <p>Encontre serviços e pessoas</p>
+</header>
+
+<section class="principal">
+
+    <h2>O que procuras?</h2>
+
+    <p>
+        Encontre pessoas que oferecem serviços
+        e descubra novas oportunidades.
+    </p>
+
+    <input
+        class="pesquisa"
+        id="pesquisa"
+        type="text"
+        placeholder="🔎 Procurar um serviço..."
+        onkeyup="pesquisar()"
+    >
+
+</section>
+
+<section>
+
+    <h2>📋 Categorias</h2>
+
+    <div class="categoria">
+        <h3>💻 Tecnologia</h3>
+        <p>Sites, programação, informática e outros serviços.</p>
+    </div>
+
+    <div class="categoria">
+        <h3>📚 Educação</h3>
+        <p>Aulas, explicações e apoio escolar.</p>
+    </div>
+
+    <div class="categoria">
+        <h3>🔧 Serviços</h3>
+        <p>Encontre diferentes tipos de profissionais.</p>
+    </div>
+
+</section>
+
+<section>
+
+    <h2>⭐ Serviços disponíveis</h2>
+
+    <div class="anuncio">
+        <h3>💻 Criador de sites</h3>
+        <p>Criação de sites para pessoas e pequenos negócios.</p>
+        <p>📍 Maputo</p>
+
+        <button class="botao"
+            onclick="verServico('Criador de sites')">
+            Ver serviço
+        </button>
+    </div>
+
+    <div class="anuncio">
+        <h3>📚 Explicador</h3>
+        <p>Aulas e explicações para estudantes.</p>
+        <p>📍 Maputo</p>
+
+        <button class="botao"
+            onclick="verServico('Explicador')">
+            Ver serviço
+        </button>
+    </div>
+
+    <div class="anuncio">
+        <h3>🔧 Técnico</h3>
+        <p>Serviços de reparação e assistência técnica.</p>
+        <p>📍 Maputo</p>
+
+        <button class="botao"
+            onclick="verServico('Técnico')">
+            Ver serviço
+        </button>
+    </div>
+
+    <div id="detalhes" class="detalhes"></div>
+
+</section>
+
+<section>
+
+    <h2>➕ Publicar um serviço</h2>
+
+    <div class="formulario">
+
+        <input
+            type="text"
+            id="nomeServico"
+            placeholder="Nome do serviço"
+        >
+
+        <input
+            type="text"
+            id="localServico"
+            placeholder="Localização"
+        >
+
+        <textarea
+            id="descricaoServico"
+            placeholder="Descreva o seu serviço"
+            rows="4"
+        ></textarea>
+
+        <button class="botao" onclick="publicarServico()">
+            Publicar serviço
+        </button>
+
+        <div id="mensagem" class="mensagem">
+            ✅ Serviço publicado
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    © 2026 Isac Web
+</footer>
+
+<script>
+
+function pesquisar() {
+
+    let texto =
+        document.getElementById("pesquisa")
+        .value
+        .toLowerCase();
+
+    let anuncios =
+        document.querySelectorAll(".anuncio");
+
+    anuncios.forEach(function(anuncio) {
+
+        let conteudo =
+            anuncio.innerText.toLowerCase();
+
+        if (conteudo.includes(texto)) {
+            anuncio.style.display = "block";
+        } else {
+            anuncio.style.display = "none";
+        }
+
+    });
+
+}
+
+function verServico(nome) {
+
+    let detalhes =
+        document.getElementById("detalhes");
+
+    detalhes.style.display = "block";
+
+    detalhes.innerHTML =
+        "<h3>📋 " + nome + "</h3>" +
+        "<p>Este é um exemplo de serviço publicado no Isac Web.</p>" +
+        "<p>📍 Localização: Maputo</p>" +
+        "<button class='botao' onclick='enviarMensagem()'>💬 Enviar mensagem</button>";
+
+}
+
+function enviarMensagem() {
+
+    let detalhes =
+        document.getElementById("detalhes");
+
+    detalhes.innerHTML +=
+        "<p style='margin-top:15px;font-weight:bold;'>💬 Área de mensagem criada!</p>";
+
+}
+
+function publicarServico() {
+
+    let nome =
+        document.getElementById("nomeServico").value;
+
+    let local =
+        document.getElementById("localServico").value;
+
+    let descricao =
+        document.getElementById("descricaoServico").value;
+
+    if (
+        nome === "" ||
+        local === "" ||
+        descricao === ""
+    ) {
+        alert("Preencha todos os campos.");
+        return;
+    }
+
+    let novoServico =
+        document.createElement("div");
+
+    novoServico.className = "anuncio";
+
+    novoServico.innerHTML =
+        "<h3>🆕 " + nome + "</h3>" +
+        "<p>" + descricao + "</p>" +
+        "<p>📍 " + local + "</p>";
+
+    document
+        .querySelector(".anuncio")
+        .parentElement
+        .appendChild(novoServico);
+
+    document.getElementById("mensagem").style.display = "block";
+
+    document.getElementById("nomeServico").value = "";
+    document.getElementById("localServico").value = "";
+    document.getElementById("descricaoServico").value = "";
+
+}
+
+</script>
+
+</body>
+</html>
