@@ -7,192 +7,448 @@
 <title>Isac Web</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-body{
-    font-family:Arial,sans-serif;
-    background:#f4f6f8;
-    color:#222;
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
 }
 
-header{
-    background:#111;
-    color:white;
-    text-align:center;
-    padding:25px 15px;
+header {
+    background: linear-gradient(135deg, #111, #333);
+    color: white;
+    text-align: center;
+    padding: 25px 15px;
 }
 
-header h1{
-    font-size:32px;
-    margin-bottom:8px;
+header h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
 }
 
-header p{
-    color:#ccc;
+header p {
+    color: #ccc;
 }
 
-.conta-area{
-    margin-top:18px;
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
 }
 
-.botao{
-    border:none;
-    background:#111;
-    color:white;
-    padding:12px 18px;
-    border-radius:8px;
-    margin:5px;
-    font-size:15px;
-    cursor:pointer;
+.caixa {
+    background: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 16px;
+    box-shadow: 0 3px 12px #ddd;
 }
 
-header .botao{
-    background:white;
-    color:#111;
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 13px;
+    margin: 7px 0;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
 }
 
-.principal{
-    background:white;
-    text-align:center;
-    padding:45px 20px;
+textarea {
+    resize: vertical;
 }
 
-.principal h2{
-    font-size:28px;
-    margin-bottom:12px;
+.botao {
+    border: none;
+    background: #111;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 15px;
 }
 
-.principal p{
-    color:#666;
-    margin-bottom:22px;
-    line-height:1.5;
+.secundario {
+    background: #555;
 }
 
-.pesquisa{
-    width:100%;
-    max-width:550px;
-    padding:15px;
-    border:1px solid #ddd;
-    border-radius:12px;
-    font-size:16px;
-    outline:none;
+.vermelho {
+    background: #c62828;
 }
 
-section{
-    padding:30px 18px;
+.verde {
+    background: #16803c;
 }
 
-.titulo{
-    text-align:center;
-    margin-bottom:20px;
+.oculto {
+    display: none;
 }
 
-.categoria,
-.anuncio,
-.detalhes,
-.caixa{
-    background:white;
-    padding:20px;
-    margin-bottom:15px;
-    border-radius:14px;
-    box-shadow:0 2px 8px #ddd;
+.servicos {
+    display: grid;
+    gap: 15px;
 }
 
-.categoria h3,
-.anuncio h3{
-    margin-bottom:10px;
+.anuncio {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px #ddd;
 }
 
-.categoria p,
-.anuncio p{
-    color:#666;
-    line-height:1.5;
-    margin-bottom:8px;
+.anuncio h3 {
+    margin-bottom: 8px;
 }
 
-.detalhes{
-    display:none;
+.anuncio p {
+    margin: 7px 0;
+    color: #555;
 }
 
-.formulario input,
-.formulario textarea{
-    width:100%;
-    padding:13px;
-    margin-bottom:12px;
-    border:1px solid #ddd;
-    border-radius:8px;
-    font-size:15px;
+.usuario {
+    background: #eee;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 15px;
 }
 
-.aviso{
-    padding:14px;
-    margin-top:12px;
-    border-radius:10px;
-    text-align:center;
-    font-weight:bold;
+.mensagem {
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 10px;
+    background: #eee;
 }
 
-.sucesso{
-    background:#e5f7e5;
+.mensagem.eu {
+    background: #dcecff;
+    text-align: right;
 }
 
-.erro{
-    background:#ffe7e7;
+.aviso {
+    padding: 13px;
+    margin-top: 12px;
+    border-radius: 10px;
+    font-weight: bold;
 }
 
-.chat{
-    margin-top:20px;
-    border-top:1px solid #ddd;
-    padding-top:20px;
+.sucesso {
+    background: #e5f7e8;
+    color: #176b27;
 }
 
-.chat textarea{
-    width:100%;
-    padding:13px;
-    border:1px solid #ddd;
-    border-radius:10px;
-    font-size:15px;
+.erro {
+    background: #ffe5e5;
+    color: #a51d1d;
 }
 
-.mensagem{
-    background:#eee;
-    padding:12px;
-    margin-top:10px;
-    border-radius:10px;
-    word-wrap:break-word;
-}
-
-footer{
-    background:#111;
-    color:#aaa;
-    text-align:center;
-    padding:25px;
-    margin-top:20px;
-}
-
-.escondido{
-    display:none;
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #777;
 }
 </style>
+</head>
 
-<!-- FIREBASE -->
+<body>
+
+<header>
+
+<h1>🌐 Isac Web</h1>
+
+<p>Encontre serviços e pessoas</p>
+
+<div style="margin-top:15px;">
+
+<button class="botao" onclick="abrirConta()">
+👤 Criar conta
+</button>
+
+<button class="botao" onclick="abrirLogin()">
+🔐 Entrar
+</button>
+
+<button
+id="botaoSair"
+class="botao vermelho oculto"
+onclick="sair()">
+🚪 Sair
+</button>
+
+</div>
+
+</header>
+
+
+<div class="container">
+
+
+<!-- UTILIZADOR LOGADO -->
+
+<div id="usuarioArea" class="caixa oculto">
+
+<div id="dadosUsuario"></div>
+
+</div>
+
+
+<!-- PESQUISA -->
+
+<div class="caixa">
+
+<h2>🔎 Procurar serviço</h2>
+
+<input
+id="pesquisa"
+type="text"
+placeholder="Ex.: técnico, explicador, designer..."
+onkeyup="pesquisar()">
+
+</div>
+
+
+<!-- CATEGORIAS -->
+
+<div class="caixa">
+
+<h2>📂 Categorias</h2>
+
+<div style="margin-top:15px;">
+
+<button class="botao secundario"
+onclick="filtrarCategoria('Tecnologia')">
+💻 Tecnologia
+</button>
+
+<button class="botao secundario"
+onclick="filtrarCategoria('Educação')">
+📚 Educação
+</button>
+
+<button class="botao secundario"
+onclick="filtrarCategoria('Técnico')">
+🔧 Técnico
+</button>
+
+<button class="botao secundario"
+onclick="mostrarTodos()">
+🌐 Todos
+</button>
+
+</div>
+
+</div>
+
+
+<!-- SERVIÇOS -->
+
+<div class="caixa">
+
+<h2>📋 Serviços disponíveis</h2>
+
+<div
+id="listaServicos"
+class="servicos"
+style="margin-top:15px;">
+</div>
+
+</div>
+
+
+<!-- DETALHES -->
+
+<div
+id="detalhes"
+class="caixa oculto">
+</div>
+
+
+<!-- PUBLICAR -->
+
+<div
+id="publicarArea"
+class="caixa oculto">
+
+<h2>➕ Publicar serviço</h2>
+
+<input
+id="nomeServico"
+type="text"
+placeholder="Nome do serviço">
+
+<input
+id="categoriaServico"
+type="text"
+placeholder="Categoria">
+
+<textarea
+id="descricaoServico"
+rows="4"
+placeholder="Descreva o seu serviço"></textarea>
+
+<input
+id="localServico"
+type="text"
+placeholder="Localização">
+
+<button
+class="botao verde"
+onclick="publicarServico()">
+Publicar serviço
+</button>
+
+<div id="resultadoPublicacao"></div>
+
+</div>
+
+
+<!-- CONTA -->
+
+<div
+id="contaArea"
+class="caixa oculto">
+
+<h2>👤 Criar conta</h2>
+
+<input
+id="nomeConta"
+type="text"
+placeholder="Seu nome">
+
+<input
+id="emailConta"
+type="email"
+placeholder="Seu e-mail">
+
+<input
+id="senhaConta"
+type="password"
+placeholder="Criar palavra-passe">
+
+<button
+class="botao"
+onclick="criarConta()">
+Criar conta
+</button>
+
+<div id="resultadoConta"></div>
+
+</div>
+
+
+<!-- LOGIN -->
+
+<div
+id="loginArea"
+class="caixa oculto">
+
+<h2>🔐 Entrar</h2>
+
+<input
+id="emailLogin"
+type="email"
+placeholder="Seu e-mail">
+
+<input
+id="senhaLogin"
+type="password"
+placeholder="Sua palavra-passe">
+
+<button
+class="botao"
+onclick="entrar()">
+Entrar
+</button>
+
+<div id="resultadoLogin"></div>
+
+</div>
+
+
+<!-- CHAT -->
+
+<div
+id="chatArea"
+class="caixa oculto">
+
+<h2>💬 Conversa</h2>
+
+<div
+id="nomeChat"
+style="margin:10px 0;font-weight:bold;">
+</div>
+
+<div
+id="mensagens"
+style="margin-top:15px;">
+</div>
+
+<textarea
+id="textoMensagem"
+rows="3"
+placeholder="Escreva a sua mensagem..."></textarea>
+
+<button
+class="botao"
+onclick="mandarMensagem()">
+Enviar
+</button>
+
+<button
+class="botao secundario"
+onclick="fecharChat()">
+Fechar
+</button>
+
+</div>
+
+
+</div>
+
+
+<footer>
+
+<p>🌐 Isac Web</p>
+
+<p style="margin-top:8px;">
+Plataforma de serviços
+</p>
+
+</footer>
+
+
 <script type="module">
 
-import { initializeApp } from
-"https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
 import {
     getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut
-} from
-"https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+    signOut,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    doc,
+    setDoc,
+    getDoc,
+    collection,
+    addDoc,
+    serverTimestamp,
+    onSnapshot,
+    query,
+    orderBy
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
 const firebaseConfig = {
@@ -208,6 +464,7 @@ const firebaseConfig = {
     messagingSenderId: "630487196101",
 
     appId: "1:630487196101:web:c2a4384c05778978076bac"
+
 };
 
 
@@ -215,45 +472,237 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 
-window.isacAuth = auth;
+const db = getFirestore(app);
 
 
-/* CRIAR CONTA */
+let usuarioAtual = null;
 
-window.criarUsuarioFirebase = async function(nome,email,senha){
+let chatAtual = null;
 
-    try{
+let cancelarMensagens = null;
 
-        const resultado =
-        await createUserWithEmailAndPassword(
-            auth,
-            email,
-            senha
-        );
 
-        mostrarAviso(
-            "Conta criada com sucesso!",
-            true
-        );
+/* =========================
+   UTILIZADOR
+========================= */
 
-        return resultado;
+onAuthStateChanged(auth, async (usuario) => {
 
-    }catch(erro){
+    usuarioAtual = usuario;
 
-        mostrarAviso(
-            traduzirErro(erro.code),
-            false
-        );
+    if (usuario) {
+
+        document
+        .getElementById("botaoSair")
+        .classList
+        .remove("oculto");
+
+        document
+        .getElementById("usuarioArea")
+        .classList
+        .remove("oculto");
+
+        document
+        .getElementById("publicarArea")
+        .classList
+        .remove("oculto");
+
+
+        const referencia =
+            doc(db, "users", usuario.uid);
+
+        const documento =
+            await getDoc(referencia);
+
+
+        let nome = usuario.email;
+
+
+        if (documento.exists()) {
+
+            nome =
+                documento.data().nome || nome;
+
+        }
+
+
+        document
+        .getElementById("dadosUsuario")
+        .innerHTML =
+        "<div class='usuario'>" +
+        "👋 Olá, <strong>" +
+        escaparHTML(nome) +
+        "</strong><br>" +
+        "📧 " +
+        escaparHTML(usuario.email) +
+        "</div>";
+
+
+    } else {
+
+        document
+        .getElementById("botaoSair")
+        .classList
+        .add("oculto");
+
+        document
+        .getElementById("usuarioArea")
+        .classList
+        .add("oculto");
+
+        document
+        .getElementById("publicarArea")
+        .classList
+        .add("oculto");
 
     }
+
+});
+
+
+/* =========================
+   CRIAR CONTA
+========================= */
+
+window.criarConta = async function() {
+
+    const nome =
+        document
+        .getElementById("nomeConta")
+        .value
+        .trim();
+
+    const email =
+        document
+        .getElementById("emailConta")
+        .value
+        .trim();
+
+    const senha =
+        document
+        .getElementById("senhaConta")
+        .value;
+
+
+    const resultado =
+        document
+        .getElementById("resultadoConta");
+
+
+    if (!nome || !email || !senha) {
+
+        resultado.className = "aviso erro";
+
+        resultado.innerText =
+            "⚠️ Preencha todos os campos.";
+
+        return;
+    }
+
+
+    if (senha.length < 6) {
+
+        resultado.className = "aviso erro";
+
+        resultado.innerText =
+            "⚠️ A palavra-passe deve ter pelo menos 6 caracteres.";
+
+        return;
+    }
+
+
+    try {
+
+        const resultadoFirebase =
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                senha
+            );
+
+
+        const usuario =
+            resultadoFirebase.user;
+
+
+        await setDoc(
+            doc(db, "users", usuario.uid),
+            {
+                nome: nome,
+                email: email,
+                createdAt: serverTimestamp()
+            }
+        );
+
+
+        resultado.className =
+            "aviso sucesso";
+
+        resultado.innerText =
+            "✅ Conta criada com sucesso!";
+
+
+        document
+        .getElementById("nomeConta")
+        .value = "";
+
+        document
+        .getElementById("emailConta")
+        .value = "";
+
+        document
+        .getElementById("senhaConta")
+        .value = "";
+
+
+    } catch (erro) {
+
+        resultado.className =
+            "aviso erro";
+
+        resultado.innerText =
+            mensagemErroFirebase(erro);
+
+    }
+
 };
 
 
-/* ENTRAR */
+/* =========================
+   LOGIN
+========================= */
 
-window.entrarUsuarioFirebase = async function(email,senha){
+window.entrar = async function() {
 
-    try{
+    const email =
+        document
+        .getElementById("emailLogin")
+        .value
+        .trim();
+
+    const senha =
+        document
+        .getElementById("senhaLogin")
+        .value;
+
+    const resultado =
+        document
+        .getElementById("resultadoLogin");
+
+
+    if (!email || !senha) {
+
+        resultado.className =
+            "aviso erro";
+
+        resultado.innerText =
+            "⚠️ Preencha o e-mail e a palavra-passe.";
+
+        return;
+    }
+
+
+    try {
 
         await signInWithEmailAndPassword(
             auth,
@@ -261,706 +710,362 @@ window.entrarUsuarioFirebase = async function(email,senha){
             senha
         );
 
-        mostrarAviso(
-            "Entrada realizada com sucesso!",
-            true
-        );
 
-    }catch(erro){
+        resultado.className =
+            "aviso sucesso";
 
-        mostrarAviso(
-            traduzirErro(erro.code),
-            false
-        );
+        resultado.innerText =
+            "✅ Entrou com sucesso!";
+
+
+        document
+        .getElementById("emailLogin")
+        .value = "";
+
+        document
+        .getElementById("senhaLogin")
+        .value = "";
+
+
+    } catch (erro) {
+
+        resultado.className =
+            "aviso erro";
+
+        resultado.innerText =
+            mensagemErroFirebase(erro);
 
     }
+
 };
 
 
-/* SAIR */
+/* =========================
+   SAIR
+========================= */
 
-window.sairUsuarioFirebase = async function(){
+window.sair = async function() {
 
     await signOut(auth);
 
+    fecharChat();
+
 };
 
 
-/* ESTADO DA CONTA */
+/* =========================
+   PUBLICAR SERVIÇO
+========================= */
 
-onAuthStateChanged(auth,function(usuario){
+window.publicarServico = async function() {
 
-    const area =
-    document.getElementById("estadoConta");
+    if (!usuarioAtual) {
 
-    if(usuario){
+        alert("Entre na sua conta primeiro.");
 
-        area.innerHTML = `
-            <p>👤 ${usuario.email}</p>
-
-            <button class="botao"
-            onclick="sairUsuarioFirebase()">
-            Sair
-            </button>
-        `;
-
-    }else{
-
-        area.innerHTML = `
-            <button class="botao"
-            onclick="abrirConta()">
-            👤 Criar conta
-            </button>
-
-            <button class="botao"
-            onclick="entrarConta()">
-            🔐 Entrar
-            </button>
-        `;
-
+        return;
     }
 
-});
-
-
-/* ERROS */
-
-function traduzirErro(codigo){
-
-    if(codigo.includes("email-already-in-use"))
-        return "Este e-mail já está registado.";
-
-    if(codigo.includes("invalid-credential"))
-        return "E-mail ou palavra-passe incorretos.";
-
-    if(codigo.includes("invalid-email"))
-        return "E-mail inválido.";
-
-    if(codigo.includes("weak-password"))
-        return "A palavra-passe deve ter pelo menos 6 caracteres.";
-
-    if(codigo.includes("user-not-found"))
-        return "Utilizador não encontrado.";
-
-    return "Não foi possível concluir a operação.";
-
-}
-
-
-function mostrarAviso(texto,sucesso){
-
-    const area =
-    document.getElementById("avisos");
-
-    area.innerHTML = `
-        <div class="aviso ${sucesso ? "sucesso" : "erro"}">
-            ${texto}
-        </div>
-    `;
-
-    setTimeout(function(){
-        area.innerHTML="";
-    },4000);
-
-}
-
-</script>
-
-</head>
-
-<body>
-
-
-<header>
-
-<h1>🌐 Isac Web</h1>
-
-<p>Encontre serviços e pessoas</p>
-
-<div class="conta-area" id="estadoConta">
-
-<button class="botao"
-onclick="abrirConta()">
-👤 Criar conta
-</button>
-
-<button class="botao"
-onclick="entrarConta()">
-🔐 Entrar
-</button>
-
-</div>
-
-</header>
-
-
-<div id="avisos"></div>
-
-
-<section class="principal">
-
-<h2>Encontre o serviço que procura</h2>
-
-<p>
-Pesquise profissionais, serviços e oportunidades.
-</p>
-
-<input
-class="pesquisa"
-id="pesquisa"
-type="text"
-placeholder="🔎 Pesquisar serviço..."
-onkeyup="pesquisar()">
-
-</section>
-
-
-<section>
-
-<h2 class="titulo">
-Categorias
-</h2>
-
-
-<div class="categoria">
-
-<h3>💻 Tecnologia</h3>
-
-<p>
-Programação, criação de sites e assistência informática.
-</p>
-
-</div>
-
-
-<div class="categoria">
-
-<h3>📚 Educação</h3>
-
-<p>
-Explicadores e serviços relacionados com educação.
-</p>
-
-</div>
-
-
-<div class="categoria">
-
-<h3>🔧 Reparações</h3>
-
-<p>
-Técnicos e profissionais de manutenção.
-</p>
-
-</div>
-
-</section>
-
-
-<section>
-
-<h2 class="titulo">
-Serviços disponíveis
-</h2>
-
-
-<div id="listaServicos">
-
-
-<div class="anuncio">
-
-<h3>💻 Criador de sites</h3>
-
-<p>
-Criação de sites para pequenos negócios.
-</p>
-
-<p>📍 Maputo</p>
-
-<button class="botao"
-onclick="verServico('Criador de sites')">
-Ver serviço
-</button>
-
-</div>
-
-
-<div class="anuncio">
-
-<h3>📚 Explicador</h3>
-
-<p>
-Aulas e explicações para estudantes.
-</p>
-
-<p>📍 Maputo</p>
-
-<button class="botao"
-onclick="verServico('Explicador')">
-Ver serviço
-</button>
-
-</div>
-
-
-<div class="anuncio">
-
-<h3>🔧 Técnico</h3>
-
-<p>
-Assistência e reparação de equipamentos.
-</p>
-
-<p>📍 Maputo</p>
-
-<button class="botao"
-onclick="verServico('Técnico')">
-Ver serviço
-</button>
-
-</div>
-
-
-</div>
-
-
-<div
-id="detalhes"
-class="detalhes">
-</div>
-
-</section>
-
-
-<section>
-
-<h2 class="titulo">
-Publicar um serviço
-</h2>
-
-
-<div class="formulario">
-
-<input
-id="nomeServico"
-type="text"
-placeholder="Nome do serviço">
-
-
-<input
-id="categoriaServico"
-type="text"
-placeholder="Categoria">
-
-
-<input
-id="localServico"
-type="text"
-placeholder="Localização">
-
-
-<textarea
-id="descricaoServico"
-rows="4"
-placeholder="Descrição do serviço">
-</textarea>
-
-
-<button
-class="botao"
-onclick="publicarServico()">
-
-Publicar serviço
-
-</button>
-
-</div>
-
-</section>
-
-
-<footer>
-
-<p>
-© 2026 Isac Web
-</p>
-
-<p>
-Conectando clientes e prestadores de serviços.
-</p>
-
-</footer>
-
-
-<script>
-
-
-/* PESQUISA */
-
-function pesquisar(){
-
-    const texto =
-    document
-    .getElementById("pesquisa")
-    .value
-    .toLowerCase();
-
-    const anuncios =
-    document.querySelectorAll(".anuncio");
-
-    anuncios.forEach(function(anuncio){
-
-        const conteudo =
-        anuncio.innerText.toLowerCase();
-
-        anuncio.style.display =
-        conteudo.includes(texto)
-        ? "block"
-        : "none";
-
-    });
-
-}
-
-
-/* DETALHES */
-
-function verServico(nome){
-
-    const detalhes =
-    document.getElementById("detalhes");
-
-    detalhes.style.display="block";
-
-    detalhes.innerHTML = `
-
-        <h2>${nome}</h2>
-
-        <p>
-        Serviço disponível na plataforma Isac Web.
-        </p>
-
-        <button
-        class="botao"
-        onclick="abrirChat('${nome}')">
-
-        💬 Enviar mensagem
-
-        </button>
-
-    `;
-
-    detalhes.scrollIntoView({
-        behavior:"smooth"
-    });
-
-}
-
-
-/* CHAT */
-
-function abrirChat(nome){
-
-    const detalhes =
-    document.getElementById("detalhes");
-
-    detalhes.innerHTML += `
-
-        <div class="chat">
-
-            <h3>
-            💬 Chat com ${nome}
-            </h3>
-
-            <textarea
-            id="textoMensagem"
-            rows="4"
-            placeholder="Escreva a sua mensagem...">
-            </textarea>
-
-            <button
-            class="botao"
-            onclick="mandarMensagem()">
-
-            Enviar mensagem
-
-            </button>
-
-            <div id="mensagens"></div>
-
-        </div>
-
-    `;
-
-}
-
-
-function mandarMensagem(){
-
-    const campo =
-    document.getElementById("textoMensagem");
-
-    if(!campo)
-        return;
-
-    const texto =
-    campo.value.trim();
-
-    if(texto==="")
-        return;
-
-    const mensagens =
-    document.getElementById("mensagens");
-
-    const nova =
-    document.createElement("div");
-
-    nova.className="mensagem";
-
-    nova.innerText=
-    "Você: "+texto;
-
-    mensagens.appendChild(nova);
-
-    campo.value="";
-
-}
-
-
-/* CRIAR CONTA */
-
-function abrirConta(){
-
-    const detalhes =
-    document.getElementById("detalhes");
-
-    detalhes.style.display="block";
-
-    detalhes.innerHTML = `
-
-        <h2>👤 Criar conta</h2>
-
-        <div class="formulario">
-
-            <input
-            id="nomeConta"
-            type="text"
-            placeholder="Seu nome">
-
-            <input
-            id="emailConta"
-            type="email"
-            placeholder="Seu e-mail">
-
-            <input
-            id="senhaConta"
-            type="password"
-            placeholder="Criar palavra-passe">
-
-            <button
-            class="botao"
-            onclick="criarConta()">
-
-            Criar conta
-
-            </button>
-
-        </div>
-
-    `;
-
-    detalhes.scrollIntoView({
-        behavior:"smooth"
-    });
-
-}
-
-
-async function criarConta(){
 
     const nome =
-    document.getElementById("nomeConta").value;
-
-    const email =
-    document.getElementById("emailConta").value;
-
-    const senha =
-    document.getElementById("senhaConta").value;
-
-    if(!nome || !email || !senha){
-
-        mostrarAviso(
-            "Preencha todos os campos.",
-            false
-        );
-
-        return;
-
-    }
-
-    await criarUsuarioFirebase(
-        nome,
-        email,
-        senha
-    );
-
-}
-
-
-/* ENTRAR */
-
-function entrarConta(){
-
-    const detalhes =
-    document.getElementById("detalhes");
-
-    detalhes.style.display="block";
-
-    detalhes.innerHTML = `
-
-        <h2>🔐 Entrar</h2>
-
-        <div class="formulario">
-
-            <input
-            id="loginEmail"
-            type="email"
-            placeholder="Seu e-mail">
-
-            <input
-            id="loginSenha"
-            type="password"
-            placeholder="Sua palavra-passe">
-
-            <button
-            class="botao"
-            onclick="fazerLogin()">
-
-            Entrar
-
-            </button>
-
-        </div>
-
-    `;
-
-    detalhes.scrollIntoView({
-        behavior:"smooth"
-    });
-
-}
-
-
-async function fazerLogin(){
-
-    const email =
-    document.getElementById("loginEmail").value;
-
-    const senha =
-    document.getElementById("loginSenha").value;
-
-    if(!email || !senha){
-
-        mostrarAviso(
-            "Preencha o e-mail e a palavra-passe.",
-            false
-        );
-
-        return;
-
-    }
-
-    await entrarUsuarioFirebase(
-        email,
-        senha
-    );
-
-}
-
-
-/* PUBLICAR SERVIÇO */
-
-function publicarServico(){
-
-    const nome =
-    document.getElementById("nomeServico").value.trim();
+        document
+        .getElementById("nomeServico")
+        .value
+        .trim();
 
     const categoria =
-    document.getElementById("categoriaServico").value.trim();
-
-    const local =
-    document.getElementById("localServico").value.trim();
+        document
+        .getElementById("categoriaServico")
+        .value
+        .trim();
 
     const descricao =
-    document.getElementById("descricaoServico").value.trim();
+        document
+        .getElementById("descricaoServico")
+        .value
+        .trim();
+
+    const local =
+        document
+        .getElementById("localServico")
+        .value
+        .trim();
 
 
-    if(!nome || !categoria || !local || !descricao){
+    const resultado =
+        document
+        .getElementById("resultadoPublicacao");
 
-        mostrarAviso(
-            "Preencha todos os campos do serviço.",
-            false
-        );
+
+    if (!nome || !categoria || !descricao) {
+
+        resultado.className =
+            "aviso erro";
+
+        resultado.innerText =
+            "⚠️ Preencha nome, categoria e descrição.";
 
         return;
+    }
+
+
+    try {
+
+        await addDoc(
+            collection(db, "services"),
+            {
+                nome: nome,
+                categoria: categoria,
+                descricao: descricao,
+                local: local,
+                ownerId: usuarioAtual.uid,
+                ownerEmail: usuarioAtual.email,
+                createdAt: serverTimestamp()
+            }
+        );
+
+
+        resultado.className =
+            "aviso sucesso";
+
+        resultado.innerText =
+            "✅ Serviço publicado!";
+
+
+        document
+        .getElementById("nomeServico")
+        .value = "";
+
+        document
+        .getElementById("categoriaServico")
+        .value = "";
+
+        document
+        .getElementById("descricaoServico")
+        .value = "";
+
+        document
+        .getElementById("localServico")
+        .value = "";
+
+    } catch (erro) {
+
+        resultado.className =
+            "aviso erro";
+
+        resultado.innerText =
+            "⚠️ Não foi possível publicar o serviço.";
+
+        console.log(erro);
+
+    }
+
+};
+
+
+/* =========================
+   CARREGAR SERVIÇOS
+========================= */
+
+const consultaServicos =
+    query(
+        collection(db, "services"),
+        orderBy("createdAt", "desc")
+    );
+
+
+onSnapshot(
+    consultaServicos,
+    (snapshot) => {
+
+        const lista =
+            document.getElementById("listaServicos");
+
+        lista.innerHTML = "";
+
+
+        if (snapshot.empty) {
+
+            lista.innerHTML =
+                "<p>Ainda não existem serviços publicados.</p>";
+
+            return;
+        }
+
+
+        snapshot.forEach((docFirebase) => {
+
+            const servico =
+                docFirebase.data();
+
+
+            const div =
+                document.createElement("div");
+
+            div.className =
+                "anuncio";
+
+
+            div.dataset.nome =
+                (servico.nome || "").toLowerCase();
+
+            div.dataset.categoria =
+                (servico.categoria || "").toLowerCase();
+
+
+            div.innerHTML =
+
+                "<h3>🔹 " +
+                escaparHTML(servico.nome) +
+                "</h3>" +
+
+                "<p>📂 " +
+                escaparHTML(servico.categoria) +
+                "</p>" +
+
+                "<p>📝 " +
+                escaparHTML(servico.descricao) +
+                "</p>" +
+
+                "<p>📍 " +
+                escaparHTML(servico.local || "Não informado") +
+                "</p>" +
+
+                "<button class='botao' " +
+                "onclick=\"abrirServico('" +
+                escaparJS(docFirebase.id) +
+                "')\">" +
+                "Ver serviço" +
+                "</button>";
+
+
+            lista.appendChild(div);
+
+        });
+
+    }
+);
+
+
+/* =========================
+   VER SERVIÇO
+========================= */
+
+window.abrirServico = async function(id) {
+
+    const documento =
+        await getDoc(
+            doc(db, "services", id)
+        );
+
+
+    if (!documento.exists()) {
+
+        return;
+    }
+
+
+    const servico =
+        documento.data();
+
+
+    const detalhes =
+        document.getElementById("detalhes");
+
+
+    detalhes.classList.remove("oculto");
+
+
+    detalhes.innerHTML =
+
+        "<h2>📋 " +
+        escaparHTML(servico.nome) +
+        "</h2>" +
+
+        "<p style='margin-top:10px'>" +
+        escaparHTML(servico.descricao) +
+        "</p>" +
+
+        "<p style='margin-top:10px'>📂 " +
+        escaparHTML(servico.categoria) +
+        "</p>" +
+
+        "<p style='margin-top:10px'>📍 " +
+        escaparHTML(servico.local || "Não informado") +
+        "</p>" +
+
+        "<button class='botao' " +
+        "onclick=\"abrirChat('" +
+        escaparJS(servico.ownerId) +
+        "','" +
+        escaparJS(servico.nome) +
+        "')\">" +
+        "💬 Enviar mensagem" +
+        "</button>";
+
+};
+
+
+/* =========================
+   CHAT
+========================= */
+
+window.abrirChat = async function(ownerId, nomeServico) {
+
+    if (!usuarioAtual) {
+
+        abrirLogin();
+
+        return;
+    }
+
+
+    if (ownerId === usuarioAtual.uid) {
+
+        alert("Este serviço pertence à sua própria conta.");
+
+        return;
+    }
+
+
+    const ids =
+        [
+            usuarioAtual.uid,
+            ownerId
+        ].sort();
+
+
+    chatAtual =
+        ids[0] + "_" + ids[1];
+
+
+    const chatReferencia =
+        doc(db, "chats", chatAtual);
+
+
+    const chatDocumento =
+        await getDoc(chatReferencia);
+
+
+    if (!chatDocumento.exists()) {
+
+        await setDoc(
+            chatReferencia,
+            {
+                participants: ids,
+                createdAt: serverTimestamp()
+            }
+        );
 
     }
 
 
-    const lista =
-    document.getElementById("listaServicos");
+    document
+    .getElementById("chatArea")
+    .classList
+    .remove("oculto");
 
 
-    const anuncio =
-    document.createElement("div");
-
-    anuncio.className="anuncio";
-
-
-    anuncio.innerHTML = `
-
-        <h3>🆕 ${nome}</h3>
-
-        <p>
-        ${descricao}
-        </p>
-
-        <p>
-        📂 ${categoria}
-        </p>
-
-        <p>
-        📍 ${local}
-        </p>
-
-        <button
-        class="botao"
-        onclick="verServico('${nome.replace(/'/g,"")}')">
-
-        Ver serviço
-
-        </button>
-
-    `;
-
-
-    lista.appendChild(anuncio);
-
-
-    document.getElementById("nomeServico").value="";
-    document.getElementById("categoriaServico").value="";
-    document.getElementById("localServico").value="";
-    document.getElementById("descricaoServico").value="";
-
-
-    mostrarAviso(
-        "✅ Serviço publicado!",
-        true
-    );
-
-}
-
-</script>
-
-</body>
-</html>
+    document
+    .getElementById("nomeChat")
+    .innerText =
