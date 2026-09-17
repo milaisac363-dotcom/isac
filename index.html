@@ -1,1071 +1,450 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Isac Web</title>
-
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
-    color: #222;
-}
-
-header {
-    background: linear-gradient(135deg, #111, #333);
-    color: white;
-    text-align: center;
-    padding: 25px 15px;
-}
-
-header h1 {
-    font-size: 32px;
-    margin-bottom: 8px;
-}
-
-header p {
-    color: #ccc;
-}
-
-.container {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-}
-
-.caixa {
-    background: white;
-    padding: 20px;
-    margin: 20px 0;
-    border-radius: 16px;
-    box-shadow: 0 3px 12px #ddd;
-}
-
-input,
-textarea,
-select {
-    width: 100%;
-    padding: 13px;
-    margin: 7px 0;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    font-size: 16px;
-}
-
-textarea {
-    resize: vertical;
-}
-
-.botao {
-    border: none;
-    background: #111;
-    color: white;
-    padding: 12px 18px;
-    border-radius: 10px;
-    margin: 5px;
-    cursor: pointer;
-    font-size: 15px;
-}
-
-.secundario {
-    background: #555;
-}
-
-.vermelho {
-    background: #c62828;
-}
-
-.verde {
-    background: #16803c;
-}
-
-.oculto {
-    display: none;
-}
-
-.servicos {
-    display: grid;
-    gap: 15px;
-}
-
-.anuncio {
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 3px 10px #ddd;
-}
-
-.anuncio h3 {
-    margin-bottom: 8px;
-}
-
-.anuncio p {
-    margin: 7px 0;
-    color: #555;
-}
-
-.usuario {
-    background: #eee;
-    padding: 12px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-
-.mensagem {
-    padding: 10px;
-    margin: 8px 0;
-    border-radius: 10px;
-    background: #eee;
-}
-
-.mensagem.eu {
-    background: #dcecff;
-    text-align: right;
-}
-
-.aviso {
-    padding: 13px;
-    margin-top: 12px;
-    border-radius: 10px;
-    font-weight: bold;
-}
-
-.sucesso {
-    background: #e5f7e8;
-    color: #176b27;
-}
-
-.erro {
-    background: #ffe5e5;
-    color: #a51d1d;
-}
-
-footer {
-    text-align: center;
-    padding: 30px;
-    color: #777;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Isac Web</title>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,sans-serif;background:#f4f6f8;color:#17202a}
+    header{background:#111827;color:white;padding:14px 16px;position:sticky;top:0;z-index:10}
+    header h1{margin:0 0 10px;font-size:22px}
+    button{border:0;border-radius:8px;padding:10px 13px;cursor:pointer;background:#2563eb;color:white}
+    button.secondary{background:#374151}
+    button.danger{background:#dc2626}
+    input,select,textarea{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:8px;margin:6px 0 10px;font-size:15px}
+    textarea{min-height:90px;resize:vertical}
+    main{max-width:900px;margin:auto;padding:16px}
+    .nav,.categories{display:flex;gap:8px;flex-wrap:wrap}
+    .card{background:white;border-radius:12px;padding:16px;margin:12px 0;box-shadow:0 2px 8px #0001}
+    .hidden{display:none!important}
+    .muted{color:#64748b;font-size:14px}
+    .service-img{width:100%;max-height:260px;object-fit:cover;border-radius:10px}
+    .actions{display:flex;gap:8px;flex-wrap:wrap}
+    #messages{height:320px;overflow-y:auto;background:#eef2f7;border-radius:10px;padding:10px}
+    .msg{padding:9px 11px;border-radius:10px;margin:7px 0;max-width:80%;background:white}
+    .mine{margin-left:auto;background:#dbeafe}
+    .error{color:#b91c1c}
+    .success{color:#15803d}
+  </style>
 </head>
-
 <body>
 
 <header>
-
-<h1>🌐 Isac Web</h1>
-
-<p>Encontre serviços e pessoas</p>
-
-<div style="margin-top:15px;">
-
-<button class="botao" onclick="abrirConta()">
-👤 Criar conta
-</button>
-
-<button class="botao" onclick="abrirLogin()">
-🔐 Entrar
-</button>
-
-<button
-id="botaoSair"
-class="botao vermelho oculto"
-onclick="sair()">
-🚪 Sair
-</button>
-
-</div>
-
+  <h1>Isac Web</h1>
+  <div class="nav">
+    <button onclick="mostrar('inicio')">Início</button>
+    <button onclick="mostrar('publicar')">Publicar serviço</button>
+    <button onclick="mostrar('mensagens')">Minhas mensagens</button>
+    <button id="btnCriar" onclick="mostrar('criar')">Criar conta</button>
+    <button id="btnLogin" onclick="mostrar('login')">Entrar</button>
+    <button id="btnLogout" class="danger hidden" onclick="sair()">Sair</button>
+  </div>
+  <div id="userArea" class="muted"></div>
 </header>
 
-
-<div class="container">
-
-
-<!-- UTILIZADOR LOGADO -->
-
-<div id="usuarioArea" class="caixa oculto">
-
-<div id="dadosUsuario"></div>
-
-</div>
-
-
-<!-- PESQUISA -->
-
-<div class="caixa">
-
-<h2>🔎 Procurar serviço</h2>
-
-<input
-id="pesquisa"
-type="text"
-placeholder="Ex.: técnico, explicador, designer..."
-onkeyup="pesquisar()">
-
-</div>
-
-
-<!-- CATEGORIAS -->
-
-<div class="caixa">
-
-<h2>📂 Categorias</h2>
-
-<div style="margin-top:15px;">
-
-<button class="botao secundario"
-onclick="filtrarCategoria('Tecnologia')">
-💻 Tecnologia
-</button>
-
-<button class="botao secundario"
-onclick="filtrarCategoria('Educação')">
-📚 Educação
-</button>
-
-<button class="botao secundario"
-onclick="filtrarCategoria('Técnico')">
-🔧 Técnico
-</button>
-
-<button class="botao secundario"
-onclick="mostrarTodos()">
-🌐 Todos
-</button>
-
-</div>
-
-</div>
-
-
-<!-- SERVIÇOS -->
-
-<div class="caixa">
-
-<h2>📋 Serviços disponíveis</h2>
-
-<div
-id="listaServicos"
-class="servicos"
-style="margin-top:15px;">
-</div>
-
-</div>
-
-
-<!-- DETALHES -->
-
-<div
-id="detalhes"
-class="caixa oculto">
-</div>
-
-
-<!-- PUBLICAR -->
-
-<div
-id="publicarArea"
-class="caixa oculto">
-
-<h2>➕ Publicar serviço</h2>
-
-<input
-id="nomeServico"
-type="text"
-placeholder="Nome do serviço">
-
-<input
-id="categoriaServico"
-type="text"
-placeholder="Categoria">
-
-<textarea
-id="descricaoServico"
-rows="4"
-placeholder="Descreva o seu serviço"></textarea>
-
-<input
-id="localServico"
-type="text"
-placeholder="Localização">
-
-<button
-class="botao verde"
-onclick="publicarServico()">
-Publicar serviço
-</button>
-
-<div id="resultadoPublicacao"></div>
-
-</div>
-
-
-<!-- CONTA -->
-
-<div
-id="contaArea"
-class="caixa oculto">
-
-<h2>👤 Criar conta</h2>
-
-<input
-id="nomeConta"
-type="text"
-placeholder="Seu nome">
-
-<input
-id="emailConta"
-type="email"
-placeholder="Seu e-mail">
-
-<input
-id="senhaConta"
-type="password"
-placeholder="Criar palavra-passe">
-
-<button
-class="botao"
-onclick="criarConta()">
-Criar conta
-</button>
-
-<div id="resultadoConta"></div>
-
-</div>
-
-
-<!-- LOGIN -->
-
-<div
-id="loginArea"
-class="caixa oculto">
-
-<h2>🔐 Entrar</h2>
-
-<input
-id="emailLogin"
-type="email"
-placeholder="Seu e-mail">
-
-<input
-id="senhaLogin"
-type="password"
-placeholder="Sua palavra-passe">
-
-<button
-class="botao"
-onclick="entrar()">
-Entrar
-</button>
-
-<div id="resultadoLogin"></div>
-
-</div>
-
-
-<!-- CHAT -->
-
-<div
-id="chatArea"
-class="caixa oculto">
-
-<h2>💬 Conversa</h2>
-
-<div
-id="nomeChat"
-style="margin:10px 0;font-weight:bold;">
-</div>
-
-<div
-id="mensagens"
-style="margin-top:15px;">
-</div>
-
-<textarea
-id="textoMensagem"
-rows="3"
-placeholder="Escreva a sua mensagem..."></textarea>
-
-<button
-class="botao"
-onclick="mandarMensagem()">
-Enviar
-</button>
-
-<button
-class="botao secundario"
-onclick="fecharChat()">
-Fechar
-</button>
-
-</div>
-
-
-</div>
-
-
-<footer>
-
-<p>🌐 Isac Web</p>
-
-<p style="margin-top:8px;">
-Plataforma de serviços
-</p>
-
-</footer>
-
+<main>
+  <section id="inicio">
+    <div class="card">
+      <h2>Encontra um serviço</h2>
+      <input id="pesquisa" placeholder="Pesquisar serviço..." oninput="filtrar()">
+      <div class="categories">
+        <button onclick="categoria='Todos';filtrar()">Todos</button>
+        <button onclick="categoria='Tecnologia';filtrar()">Tecnologia</button>
+        <button onclick="categoria='Educação';filtrar()">Educação</button>
+        <button onclick="categoria='Técnico';filtrar()">Técnico</button>
+      </div>
+    </div>
+    <div id="lista"></div>
+  </section>
+
+  <section id="detalhe" class="hidden">
+    <div class="card" id="detalheConteudo"></div>
+  </section>
+
+  <section id="publicar" class="hidden">
+    <div class="card">
+      <h2>Publicar serviço</h2>
+      <div id="pubAviso" class="muted">É necessário entrar na conta.</div>
+      <input id="nomeServico" placeholder="Nome do serviço">
+      <select id="categoriaServico">
+        <option>Tecnologia</option>
+        <option>Educação</option>
+        <option>Técnico</option>
+        <option>Outros</option>
+      </select>
+      <textarea id="descricaoServico" placeholder="Descrição do serviço"></textarea>
+      <input id="imagemServico" placeholder="Link da imagem (opcional)">
+      <button onclick="publicarServico()">Publicar</button>
+      <div id="pubMsg"></div>
+    </div>
+  </section>
+
+  <section id="criar" class="hidden">
+    <div class="card">
+      <h2>Criar conta</h2>
+      <input id="nomeCriar" placeholder="Nome">
+      <input id="emailCriar" type="email" placeholder="E-mail">
+      <input id="senhaCriar" type="password" placeholder="Palavra-passe (mínimo 6 caracteres)">
+      <button onclick="criarConta()">Criar conta</button>
+      <div id="criarMsg"></div>
+    </div>
+  </section>
+
+  <section id="login" class="hidden">
+    <div class="card">
+      <h2>Entrar</h2>
+      <input id="emailLogin" type="email" placeholder="E-mail">
+      <input id="senhaLogin" type="password" placeholder="Palavra-passe">
+      <button onclick="entrar()">Entrar</button>
+      <div id="loginMsg"></div>
+    </div>
+  </section>
+
+  <section id="mensagens" class="hidden">
+    <div class="card">
+      <h2>Minhas mensagens</h2>
+      <div id="listaChats">Entra na conta para ver as conversas.</div>
+    </div>
+  </section>
+
+  <section id="chat" class="hidden">
+    <div class="card">
+      <h2 id="chatTitulo">Chat</h2>
+      <div id="messages"></div>
+      <input id="mensagemInput" placeholder="Escreve uma mensagem..." onkeydown="if(event.key==='Enter')enviarMensagem()">
+      <button onclick="enviarMensagem()">Enviar</button>
+      <button class="secondary" onclick="mostrar('inicio')">Voltar</button>
+    </div>
+  </section>
+</main>
 
 <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+    signOut, onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  import {
+    getFirestore, doc, setDoc, addDoc, collection, query,
+    orderBy, onSnapshot, serverTimestamp, getDocs, where
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-import {
-    initializeApp
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-
-import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-
-import {
-    getFirestore,
-    doc,
-    setDoc,
-    getDoc,
-    collection,
-    addDoc,
-    serverTimestamp,
-    onSnapshot,
-    query,
-    orderBy
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-
-
-const firebaseConfig = {
-
+  const firebaseConfig = {
     apiKey: "AIzaSyChCyX9PcZri9HBD2HcVp3A8n1hE0cCCDg",
-
     authDomain: "isac-wep.firebaseapp.com",
-
     projectId: "isac-wep",
-
     storageBucket: "isac-wep.firebasestorage.app",
-
     messagingSenderId: "630487196101",
-
     appId: "1:630487196101:web:c2a4384c05778978076bac"
+  };
 
-};
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
 
+  let utilizador = null;
+  let categoria = "Todos";
+  let servicos = [];
+  let chatAtual = null;
+  let pararMensagens = null;
 
-const app = initializeApp(firebaseConfig);
+  window.mostrar = function(id){
+    document.querySelectorAll("main > section").forEach(s => s.classList.add("hidden"));
+    document.getElementById(id)?.classList.remove("hidden");
+    if(id === "mensagens") carregarChats();
+  };
 
-const auth = getAuth(app);
+  function escapeHtml(valor){
+    return String(valor ?? "").replace(/[&<>"']/g, c => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+    }[c]));
+  }
 
-const db = getFirestore(app);
+  function erroFirebase(e){
+    const map = {
+      "auth/email-already-in-use":"Este e-mail já está registado.",
+      "auth/invalid-email":"O e-mail não é válido.",
+      "auth/weak-password":"A palavra-passe deve ter pelo menos 6 caracteres.",
+      "auth/invalid-credential":"E-mail ou palavra-passe incorretos.",
+      "auth/network-request-failed":"Falha de internet. Tenta novamente."
+    };
+    return map[e?.code] || ("Erro: " + (e?.message || "não foi possível concluir."));
+  }
 
+  window.criarConta = async function(){
+    const nome = document.getElementById("nomeCriar").value.trim();
+    const email = document.getElementById("emailCriar").value.trim();
+    const senha = document.getElementById("senhaCriar").value;
+    const msg = document.getElementById("criarMsg");
+    msg.className = "";
+    msg.textContent = "";
 
-let usuarioAtual = null;
-
-let chatAtual = null;
-
-let cancelarMensagens = null;
-
-
-/* =========================
-   UTILIZADOR
-========================= */
-
-onAuthStateChanged(auth, async (usuario) => {
-
-    usuarioAtual = usuario;
-
-    if (usuario) {
-
-        document
-        .getElementById("botaoSair")
-        .classList
-        .remove("oculto");
-
-        document
-        .getElementById("usuarioArea")
-        .classList
-        .remove("oculto");
-
-        document
-        .getElementById("publicarArea")
-        .classList
-        .remove("oculto");
-
-
-        const referencia =
-            doc(db, "users", usuario.uid);
-
-        const documento =
-            await getDoc(referencia);
-
-
-        let nome = usuario.email;
-
-
-        if (documento.exists()) {
-
-            nome =
-                documento.data().nome || nome;
-
-        }
-
-
-        document
-        .getElementById("dadosUsuario")
-        .innerHTML =
-        "<div class='usuario'>" +
-        "👋 Olá, <strong>" +
-        escaparHTML(nome) +
-        "</strong><br>" +
-        "📧 " +
-        escaparHTML(usuario.email) +
-        "</div>";
-
-
-    } else {
-
-        document
-        .getElementById("botaoSair")
-        .classList
-        .add("oculto");
-
-        document
-        .getElementById("usuarioArea")
-        .classList
-        .add("oculto");
-
-        document
-        .getElementById("publicarArea")
-        .classList
-        .add("oculto");
-
+    if(!nome || !email || !senha){
+      msg.className="error";
+      msg.textContent="Preenche todos os campos.";
+      return;
     }
 
-});
-
-
-/* =========================
-   CRIAR CONTA
-========================= */
-
-window.criarConta = async function() {
-
-    const nome =
-        document
-        .getElementById("nomeConta")
-        .value
-        .trim();
-
-    const email =
-        document
-        .getElementById("emailConta")
-        .value
-        .trim();
-
-    const senha =
-        document
-        .getElementById("senhaConta")
-        .value;
-
-
-    const resultado =
-        document
-        .getElementById("resultadoConta");
-
-
-    if (!nome || !email || !senha) {
-
-        resultado.className = "aviso erro";
-
-        resultado.innerText =
-            "⚠️ Preencha todos os campos.";
-
-        return;
+    try{
+      const cred = await createUserWithEmailAndPassword(auth,email,senha);
+      await setDoc(doc(db,"users",cred.user.uid),{
+        uid: cred.user.uid,
+        nome,
+        email,
+        createdAt: serverTimestamp()
+      });
+      msg.className="success";
+      msg.textContent="Conta criada com sucesso!";
+      document.getElementById("senhaCriar").value="";
+      setTimeout(()=>mostrar("inicio"),700);
+    }catch(e){
+      msg.className="error";
+      msg.textContent=erroFirebase(e);
+      console.error(e);
     }
+  };
 
-
-    if (senha.length < 6) {
-
-        resultado.className = "aviso erro";
-
-        resultado.innerText =
-            "⚠️ A palavra-passe deve ter pelo menos 6 caracteres.";
-
-        return;
+  window.entrar = async function(){
+    const email=document.getElementById("emailLogin").value.trim();
+    const senha=document.getElementById("senhaLogin").value;
+    const msg=document.getElementById("loginMsg");
+    try{
+      await signInWithEmailAndPassword(auth,email,senha);
+      msg.className="success";
+      msg.textContent="Sessão iniciada.";
+      setTimeout(()=>mostrar("inicio"),500);
+    }catch(e){
+      msg.className="error";
+      msg.textContent=erroFirebase(e);
+      console.error(e);
     }
+  };
 
-
-    try {
-
-        const resultadoFirebase =
-            await createUserWithEmailAndPassword(
-                auth,
-                email,
-                senha
-            );
-
-
-        const usuario =
-            resultadoFirebase.user;
-
-
-        await setDoc(
-            doc(db, "users", usuario.uid),
-            {
-                nome: nome,
-                email: email,
-                createdAt: serverTimestamp()
-            }
-        );
-
-
-        resultado.className =
-            "aviso sucesso";
-
-        resultado.innerText =
-            "✅ Conta criada com sucesso!";
-
-
-        document
-        .getElementById("nomeConta")
-        .value = "";
-
-        document
-        .getElementById("emailConta")
-        .value = "";
-
-        document
-        .getElementById("senhaConta")
-        .value = "";
-
-
-    } catch (erro) {
-
-        resultado.className =
-            "aviso erro";
-
-        resultado.innerText =
-            mensagemErroFirebase(erro);
-
-    }
-
-};
-
-
-/* =========================
-   LOGIN
-========================= */
-
-window.entrar = async function() {
-
-    const email =
-        document
-        .getElementById("emailLogin")
-        .value
-        .trim();
-
-    const senha =
-        document
-        .getElementById("senhaLogin")
-        .value;
-
-    const resultado =
-        document
-        .getElementById("resultadoLogin");
-
-
-    if (!email || !senha) {
-
-        resultado.className =
-            "aviso erro";
-
-        resultado.innerText =
-            "⚠️ Preencha o e-mail e a palavra-passe.";
-
-        return;
-    }
-
-
-    try {
-
-        await signInWithEmailAndPassword(
-            auth,
-            email,
-            senha
-        );
-
-
-        resultado.className =
-            "aviso sucesso";
-
-        resultado.innerText =
-            "✅ Entrou com sucesso!";
-
-
-        document
-        .getElementById("emailLogin")
-        .value = "";
-
-        document
-        .getElementById("senhaLogin")
-        .value = "";
-
-
-    } catch (erro) {
-
-        resultado.className =
-            "aviso erro";
-
-        resultado.innerText =
-            mensagemErroFirebase(erro);
-
-    }
-
-};
-
-
-/* =========================
-   SAIR
-========================= */
-
-window.sair = async function() {
-
+  window.sair = async function(){
     await signOut(auth);
+    mostrar("inicio");
+  };
 
-    fecharChat();
+  onAuthStateChanged(auth, user=>{
+    utilizador=user;
+    document.getElementById("btnCriar").classList.toggle("hidden",!!user);
+    document.getElementById("btnLogin").classList.toggle("hidden",!!user);
+    document.getElementById("btnLogout").classList.toggle("hidden",!user);
+    document.getElementById("userArea").textContent =
+      user ? "Ligado: " + user.email : "Não tens sessão iniciada.";
+    document.getElementById("pubAviso").textContent =
+      user ? "Podes publicar o teu serviço." : "É necessário entrar na conta.";
+    if(user) carregarChats();
+  });
 
-};
-
-
-/* =========================
-   PUBLICAR SERVIÇO
-========================= */
-
-window.publicarServico = async function() {
-
-    if (!usuarioAtual) {
-
-        alert("Entre na sua conta primeiro.");
-
-        return;
+  window.publicarServico = async function(){
+    if(!utilizador){
+      alert("Primeiro entra na tua conta.");
+      mostrar("login");
+      return;
     }
 
+    const nome=document.getElementById("nomeServico").value.trim();
+    const categoriaServico=document.getElementById("categoriaServico").value;
+    const descricao=document.getElementById("descricaoServico").value.trim();
+    const imagem=document.getElementById("imagemServico").value.trim();
+    const msg=document.getElementById("pubMsg");
 
-    const nome =
-        document
-        .getElementById("nomeServico")
-        .value
-        .trim();
-
-    const categoria =
-        document
-        .getElementById("categoriaServico")
-        .value
-        .trim();
-
-    const descricao =
-        document
-        .getElementById("descricaoServico")
-        .value
-        .trim();
-
-    const local =
-        document
-        .getElementById("localServico")
-        .value
-        .trim();
-
-
-    const resultado =
-        document
-        .getElementById("resultadoPublicacao");
-
-
-    if (!nome || !categoria || !descricao) {
-
-        resultado.className =
-            "aviso erro";
-
-        resultado.innerText =
-            "⚠️ Preencha nome, categoria e descrição.";
-
-        return;
+    if(!nome || !descricao){
+      msg.className="error";
+      msg.textContent="Preenche o nome e a descrição.";
+      return;
     }
 
+    try{
+      await addDoc(collection(db,"services"),{
+        nome,
+        categoria:categoriaServico,
+        descricao,
+        imagem,
+        ownerId:utilizador.uid,
+        ownerEmail:utilizador.email,
+        createdAt:serverTimestamp()
+      });
+      msg.className="success";
+      msg.textContent="Serviço publicado!";
+      document.getElementById("nomeServico").value="";
+      document.getElementById("descricaoServico").value="";
+      document.getElementById("imagemServico").value="";
+    }catch(e){
+      msg.className="error";
+      msg.textContent=erroFirebase(e);
+      console.error(e);
+    }
+  };
 
-    try {
+  function ouvirServicos(){
+    const q=query(collection(db,"services"),orderBy("createdAt","desc"));
+    onSnapshot(q,snap=>{
+      servicos=snap.docs.map(d=>({id:d.id,...d.data()}));
+      filtrar();
+    },e=>{
+      document.getElementById("lista").innerHTML =
+        '<div class="card error">Não foi possível carregar os serviços.</div>';
+      console.error(e);
+    });
+  }
 
-        await addDoc(
-            collection(db, "services"),
-            {
-                nome: nome,
-                categoria: categoria,
-                descricao: descricao,
-                local: local,
-                ownerId: usuarioAtual.uid,
-                ownerEmail: usuarioAtual.email,
-                createdAt: serverTimestamp()
-            }
-        );
+  window.filtrar = function(){
+    const termo=document.getElementById("pesquisa").value.toLowerCase().trim();
+    const lista=document.getElementById("lista");
+    const filtrados=servicos.filter(s=>{
+      const texto=(s.nome+" "+s.descricao+" "+s.categoria).toLowerCase();
+      return (categoria==="Todos" || s.categoria===categoria) && texto.includes(termo);
+    });
 
-
-        resultado.className =
-            "aviso sucesso";
-
-        resultado.innerText =
-            "✅ Serviço publicado!";
-
-
-        document
-        .getElementById("nomeServico")
-        .value = "";
-
-        document
-        .getElementById("categoriaServico")
-        .value = "";
-
-        document
-        .getElementById("descricaoServico")
-        .value = "";
-
-        document
-        .getElementById("localServico")
-        .value = "";
-
-    } catch (erro) {
-
-        resultado.className =
-            "aviso erro";
-
-        resultado.innerText =
-            "⚠️ Não foi possível publicar o serviço.";
-
-        console.log(erro);
-
+    if(!filtrados.length){
+      lista.innerHTML='<div class="card">Nenhum serviço encontrado.</div>';
+      return;
     }
 
-};
+    lista.innerHTML=filtrados.map(s=>`
+      <div class="card">
+        ${s.imagem ? `<img class="service-img" src="${escapeHtml(s.imagem)}" alt="">` : ""}
+        <h3>${escapeHtml(s.nome)}</h3>
+        <div class="muted">${escapeHtml(s.categoria)}</div>
+        <p>${escapeHtml(s.descricao)}</p>
+        <button onclick="abrirServico('${s.id}')">Ver serviço</button>
+      </div>
+    `).join("");
+  };
 
+  window.abrirServico = function(id){
+    const s=servicos.find(x=>x.id===id);
+    if(!s)return;
+    document.getElementById("detalheConteudo").innerHTML=`
+      ${s.imagem ? `<img class="service-img" src="${escapeHtml(s.imagem)}" alt="">` : ""}
+      <h2>${escapeHtml(s.nome)}</h2>
+      <div class="muted">Categoria: ${escapeHtml(s.categoria)}</div>
+      <p>${escapeHtml(s.descricao)}</p>
+      <p class="muted">Prestador: ${escapeHtml(s.ownerEmail || "Utilizador")}</p>
+      <div class="actions">
+        ${utilizador && utilizador.uid!==s.ownerId
+          ? `<button onclick="abrirChat('${s.ownerId}','${escapeHtml(s.ownerEmail || "Prestador")}')">Conversar</button>`
+          : ""}
+        <button class="secondary" onclick="mostrar('inicio')">Voltar</button>
+      </div>
+    `;
+    mostrar("detalhe");
+  };
 
-/* =========================
-   CARREGAR SERVIÇOS
-========================= */
+  function idChat(uid1,uid2){
+    return [uid1,uid2].sort().join("_");
+  }
 
-const consultaServicos =
-    query(
-        collection(db, "services"),
-        orderBy("createdAt", "desc")
-    );
+  window.abrirChat = async function(outroUid,outroEmail){
+    if(!utilizador){
+      alert("Entra na tua conta para conversar.");
+      mostrar("login");
+      return;
+    }
 
+    const chatId=idChat(utilizador.uid,outroUid);
+    chatAtual=chatId;
 
-onSnapshot(
-    consultaServicos,
-    (snapshot) => {
+    try{
+      await setDoc(doc(db,"chats",chatId),{
+        participants:[utilizador.uid,outroUid].sort(),
+        participantEmails:{
+          [utilizador.uid]:utilizador.email,
+          [outroUid]:outroEmail
+        },
+        updatedAt:serverTimestamp()
+      },{merge:true});
 
-        const lista =
-            document.getElementById("listaServicos");
+      document.getElementById("chatTitulo").textContent="Chat com "+outroEmail;
+      mostrar("chat");
+      ouvirMensagens();
+    }catch(e){
+      alert(erroFirebase(e));
+      console.error(e);
+    }
+  };
 
-        lista.innerHTML = "";
+  function ouvirMensagens(){
+    if(pararMensagens) pararMensagens();
+    const q=query(collection(db,"chats",chatAtual,"messages"),orderBy("createdAt","asc"));
+    pararMensagens=onSnapshot(q,snap=>{
+      const box=document.getElementById("messages");
+      box.innerHTML=snap.docs.map(d=>{
+        const m=d.data();
+        const mine=m.senderId===utilizador?.uid;
+        return `<div class="msg ${mine?"mine":""}">
+          <div>${escapeHtml(m.text)}</div>
+          <small class="muted">${escapeHtml(m.senderEmail || "")}</small>
+        </div>`;
+      }).join("");
+      box.scrollTop=box.scrollHeight;
+    });
+  }
 
+  window.enviarMensagem = async function(){
+    if(!utilizador || !chatAtual)return;
+    const input=document.getElementById("mensagemInput");
+    const text=input.value.trim();
+    if(!text)return;
 
-        if (snapshot.empty) {
+    try{
+      await addDoc(collection(db,"chats",chatAtual,"messages"),{
+        text,
+        senderId:utilizador.uid,
+        senderEmail:utilizador.email,
+        createdAt:serverTimestamp()
+      });
+      await setDoc(doc(db,"chats",chatAtual),{
+        updatedAt:serverTimestamp()
+      },{merge:true});
+      input.value="";
+    }catch(e){
+      alert(erroFirebase(e));
+      console.error(e);
+    }
+  };
 
-            lista.innerHTML =
-                "<p>Ainda não existem serviços publicados.</p>";
+  async function carregarChats(){
+    const box=document.getElementById("listaChats");
+    if(!utilizador){
+      box.textContent="Entra na conta para ver as conversas.";
+      return;
+    }
 
-            return;
-        }
-
-
-        snapshot.forEach((docFirebase) => {
-
-            const servico =
-                docFirebase.data();
-
-
-            const div =
-                document.createElement("div");
-
-            div.className =
-                "anuncio";
-
-
-            div.dataset.nome =
-                (servico.nome || "").toLowerCase();
-
-            div.dataset.categoria =
-                (servico.categoria || "").toLowerCase();
-
-
-            div.innerHTML =
-
-                "<h3>🔹 " +
-                escaparHTML(servico.nome) +
-                "</h3>" +
-
-                "<p>📂 " +
-                escaparHTML(servico.categoria) +
-                "</p>" +
-
-                "<p>📝 " +
-                escaparHTML(servico.descricao) +
-                "</p>" +
-
-                "<p>📍 " +
-                escaparHTML(servico.local || "Não informado") +
-                "</p>" +
-
-                "<button class='botao' " +
-                "onclick=\"abrirServico('" +
-                escaparJS(docFirebase.id) +
-                "')\">" +
-                "Ver serviço" +
-                "</button>";
-
-
-            lista.appendChild(div);
-
+    try{
+      const snap=await getDocs(collection(db,"chats"));
+      const chats=snap.docs.map(d=>({id:d.id,...d.data()}))
+        .filter(c=>Array.isArray(c.participants) && c.participants.includes(utilizador.uid))
+        .sort((a,b)=>{
+          const ta=a.updatedAt?.seconds || 0;
+          const tb=b.updatedAt?.seconds || 0;
+          return tb-ta;
         });
 
-    }
-);
-
-
-/* =========================
-   VER SERVIÇO
-========================= */
-
-window.abrirServico = async function(id) {
-
-    const documento =
-        await getDoc(
-            doc(db, "services", id)
-        );
-
-
-    if (!documento.exists()) {
-
+      if(!chats.length){
+        box.innerHTML="<p>Nenhuma conversa ainda.</p>";
         return;
+      }
+
+      box.innerHTML=chats.map(c=>{
+        const outro=c.participants.find(uid=>uid!==utilizador.uid);
+        const email=c.participantEmails?.[outro] || "Utilizador";
+        return `<div class="card">
+          <strong>${escapeHtml(email)}</strong><br>
+          <button onclick="abrirChat('${escapeHtml(outro)}','${escapeHtml(email)}')">Abrir conversa</button>
+        </div>`;
+      }).join("");
+    }catch(e){
+      box.innerHTML='<p class="error">Não foi possível carregar as conversas.</p>';
+      console.error(e);
     }
+  }
 
-
-    const servico =
-        documento.data();
-
-
-    const detalhes =
-        document.getElementById("detalhes");
-
-
-    detalhes.classList.remove("oculto");
-
-
-    detalhes.innerHTML =
-
-        "<h2>📋 " +
-        escaparHTML(servico.nome) +
-        "</h2>" +
-
-        "<p style='margin-top:10px'>" +
-        escaparHTML(servico.descricao) +
-        "</p>" +
-
-        "<p style='margin-top:10px'>📂 " +
-        escaparHTML(servico.categoria) +
-        "</p>" +
-
-        "<p style='margin-top:10px'>📍 " +
-        escaparHTML(servico.local || "Não informado") +
-        "</p>" +
-
-        "<button class='botao' " +
-        "onclick=\"abrirChat('" +
-        escaparJS(servico.ownerId) +
-        "','" +
-        escaparJS(servico.nome) +
-        "')\">" +
-        "💬 Enviar mensagem" +
-        "</button>";
-
-};
-
-
-/* =========================
-   CHAT
-========================= */
-
-window.abrirChat = async function(ownerId, nomeServico) {
-
-    if (!usuarioAtual) {
-
-        abrirLogin();
-
-        return;
-    }
-
-
-    if (ownerId === usuarioAtual.uid) {
-
-        alert("Este serviço pertence à sua própria conta.");
-
-        return;
-    }
-
-
-    const ids =
-        [
-            usuarioAtual.uid,
-            ownerId
-        ].sort();
-
-
-    chatAtual =
-        ids[0] + "_" + ids[1];
-
-
-    const chatReferencia =
-        doc(db, "chats", chatAtual);
-
-
-    const chatDocumento =
-        await getDoc(chatReferencia);
-
-
-    if (!chatDocumento.exists()) {
-
-        await setDoc(
-            chatReferencia,
-            {
-                participants: ids,
-                createdAt: serverTimestamp()
-            }
-        );
-
-    }
-
-
-    document
-    .getElementById("chatArea")
-    .classList
-    .remove("oculto");
-
-
-    document
-    .getElementById("nomeChat")
-    .innerText =
+  ouvirServicos();
+</script>
+</body>
+      </html>
+    
