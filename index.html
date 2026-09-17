@@ -1,375 +1,962 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Isac Web</title>
+<title>Isac Web</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f2f4f7;
-            color: #222;
-        }
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f6f8;
+    color:#222;
+}
 
-        header {
-            background: #111;
-            color: white;
-            padding: 22px 15px;
-            text-align: center;
-        }
+header{
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:25px 15px;
+}
 
-        header h1 {
-            font-size: 30px;
-            margin-bottom: 8px;
-        }
+header h1{
+    font-size:32px;
+    margin-bottom:8px;
+}
 
-        header p {
-            color: #ccc;
-        }
+header p{
+    color:#ccc;
+}
 
-        .principal {
-            background: white;
-            text-align: center;
-            padding: 45px 20px;
-        }
+.conta-area{
+    margin-top:18px;
+}
 
-        .principal h2 {
-            font-size: 28px;
-            margin-bottom: 12px;
-        }
+.botao{
+    border:none;
+    background:#111;
+    color:white;
+    padding:12px 18px;
+    border-radius:8px;
+    margin:5px;
+    font-size:15px;
+    cursor:pointer;
+}
 
-        .principal p {
-            color: #666;
-            margin-bottom: 22px;
-            line-height: 1.5;
-        }
+header .botao{
+    background:white;
+    color:#111;
+}
 
-        .pesquisa {
-            width: 100%;
-            max-width: 500px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            font-size: 16px;
-            outline: none;
-        }
+.principal{
+    background:white;
+    text-align:center;
+    padding:45px 20px;
+}
 
-        section {
-            padding: 30px 18px;
-        }
+.principal h2{
+    font-size:28px;
+    margin-bottom:12px;
+}
 
-        section > h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+.principal p{
+    color:#666;
+    margin-bottom:22px;
+    line-height:1.5;
+}
 
-        .categoria,
-        .anuncio {
-            background: white;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 14px;
-            box-shadow: 0 2px 8px #ddd;
-        }
+.pesquisa{
+    width:100%;
+    max-width:550px;
+    padding:15px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    font-size:16px;
+    outline:none;
+}
 
-        .categoria h3,
-        .anuncio h3 {
-            margin-bottom: 8px;
-        }
+section{
+    padding:30px 18px;
+}
 
-        .categoria p,
-        .anuncio p {
-            color: #666;
-            line-height: 1.5;
-        }
+.titulo{
+    text-align:center;
+    margin-bottom:20px;
+}
 
-        .botao {
-            border: none;
-            background: #111;
-            color: white;
-            padding: 12px 18px;
-            border-radius: 8px;
-            margin-top: 15px;
-            cursor: pointer;
-            font-size: 15px;
-        }
+.categoria,
+.anuncio,
+.detalhes,
+.caixa{
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:14px;
+    box-shadow:0 2px 8px #ddd;
+}
 
-        .botao:hover {
-            opacity: 0.8;
-        }
+.categoria h3,
+.anuncio h3{
+    margin-bottom:10px;
+}
 
-        .detalhes {
-            display: none;
-            background: white;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 14px;
-        }
+.categoria p,
+.anuncio p{
+    color:#666;
+    line-height:1.5;
+    margin-bottom:8px;
+}
 
-        .formulario {
-            background: white;
-            padding: 20px;
-            border-radius: 14px;
-        }
+.detalhes{
+    display:none;
+}
 
-        .formulario input,
-        .formulario textarea {
-            width: 100%;
-            padding: 13px;
-            margin-bottom: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 15px;
-        }
+.formulario input,
+.formulario textarea{
+    width:100%;
+    padding:13px;
+    margin-bottom:12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    font-size:15px;
+}
 
-        .mensagem {
-            display: none;
-            text-align: center;
-            background: #e7f7e7;
-            padding: 15px;
-            margin-top: 15px;
-            border-radius: 10px;
-            font-weight: bold;
-        }
+.aviso{
+    padding:14px;
+    margin-top:12px;
+    border-radius:10px;
+    text-align:center;
+    font-weight:bold;
+}
 
-        footer {
-            background: #111;
-            color: #aaa;
-            text-align: center;
-            padding: 25px;
-            margin-top: 20px;
-        }
-    </style>
+.sucesso{
+    background:#e5f7e5;
+}
+
+.erro{
+    background:#ffe7e7;
+}
+
+.chat{
+    margin-top:20px;
+    border-top:1px solid #ddd;
+    padding-top:20px;
+}
+
+.chat textarea{
+    width:100%;
+    padding:13px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:15px;
+}
+
+.mensagem{
+    background:#eee;
+    padding:12px;
+    margin-top:10px;
+    border-radius:10px;
+    word-wrap:break-word;
+}
+
+footer{
+    background:#111;
+    color:#aaa;
+    text-align:center;
+    padding:25px;
+    margin-top:20px;
+}
+
+.escondido{
+    display:none;
+}
+</style>
+
+<!-- FIREBASE -->
+<script type="module">
+
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut
+} from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyChCyX9PcZri9HBD2HcVp3A8n1hE0cCCDg",
+
+    authDomain: "isac-wep.firebaseapp.com",
+
+    projectId: "isac-wep",
+
+    storageBucket: "isac-wep.firebasestorage.app",
+
+    messagingSenderId: "630487196101",
+
+    appId: "1:630487196101:web:c2a4384c05778978076bac"
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+window.isacAuth = auth;
+
+
+/* CRIAR CONTA */
+
+window.criarUsuarioFirebase = async function(nome,email,senha){
+
+    try{
+
+        const resultado =
+        await createUserWithEmailAndPassword(
+            auth,
+            email,
+            senha
+        );
+
+        mostrarAviso(
+            "Conta criada com sucesso!",
+            true
+        );
+
+        return resultado;
+
+    }catch(erro){
+
+        mostrarAviso(
+            traduzirErro(erro.code),
+            false
+        );
+
+    }
+};
+
+
+/* ENTRAR */
+
+window.entrarUsuarioFirebase = async function(email,senha){
+
+    try{
+
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            senha
+        );
+
+        mostrarAviso(
+            "Entrada realizada com sucesso!",
+            true
+        );
+
+    }catch(erro){
+
+        mostrarAviso(
+            traduzirErro(erro.code),
+            false
+        );
+
+    }
+};
+
+
+/* SAIR */
+
+window.sairUsuarioFirebase = async function(){
+
+    await signOut(auth);
+
+};
+
+
+/* ESTADO DA CONTA */
+
+onAuthStateChanged(auth,function(usuario){
+
+    const area =
+    document.getElementById("estadoConta");
+
+    if(usuario){
+
+        area.innerHTML = `
+            <p>👤 ${usuario.email}</p>
+
+            <button class="botao"
+            onclick="sairUsuarioFirebase()">
+            Sair
+            </button>
+        `;
+
+    }else{
+
+        area.innerHTML = `
+            <button class="botao"
+            onclick="abrirConta()">
+            👤 Criar conta
+            </button>
+
+            <button class="botao"
+            onclick="entrarConta()">
+            🔐 Entrar
+            </button>
+        `;
+
+    }
+
+});
+
+
+/* ERROS */
+
+function traduzirErro(codigo){
+
+    if(codigo.includes("email-already-in-use"))
+        return "Este e-mail já está registado.";
+
+    if(codigo.includes("invalid-credential"))
+        return "E-mail ou palavra-passe incorretos.";
+
+    if(codigo.includes("invalid-email"))
+        return "E-mail inválido.";
+
+    if(codigo.includes("weak-password"))
+        return "A palavra-passe deve ter pelo menos 6 caracteres.";
+
+    if(codigo.includes("user-not-found"))
+        return "Utilizador não encontrado.";
+
+    return "Não foi possível concluir a operação.";
+
+}
+
+
+function mostrarAviso(texto,sucesso){
+
+    const area =
+    document.getElementById("avisos");
+
+    area.innerHTML = `
+        <div class="aviso ${sucesso ? "sucesso" : "erro"}">
+            ${texto}
+        </div>
+    `;
+
+    setTimeout(function(){
+        area.innerHTML="";
+    },4000);
+
+}
+
+</script>
+
 </head>
 
 <body>
 
+
 <header>
-    <h1>🌐 Isac Web</h1>
-    <p>Encontre serviços e pessoas</p>
+
+<h1>🌐 Isac Web</h1>
+
+<p>Encontre serviços e pessoas</p>
+
+<div class="conta-area" id="estadoConta">
+
+<button class="botao"
+onclick="abrirConta()">
+👤 Criar conta
+</button>
+
+<button class="botao"
+onclick="entrarConta()">
+🔐 Entrar
+</button>
+
+</div>
+
 </header>
+
+
+<div id="avisos"></div>
+
 
 <section class="principal">
 
-    <h2>O que procuras?</h2>
+<h2>Encontre o serviço que procura</h2>
 
-    <p>
-        Encontre pessoas que oferecem serviços
-        e descubra novas oportunidades.
-    </p>
+<p>
+Pesquise profissionais, serviços e oportunidades.
+</p>
 
-    <input
-        class="pesquisa"
-        id="pesquisa"
-        type="text"
-        placeholder="🔎 Procurar um serviço..."
-        onkeyup="pesquisar()"
-    >
+<input
+class="pesquisa"
+id="pesquisa"
+type="text"
+placeholder="🔎 Pesquisar serviço..."
+onkeyup="pesquisar()">
 
 </section>
+
 
 <section>
 
-    <h2>📋 Categorias</h2>
+<h2 class="titulo">
+Categorias
+</h2>
 
-    <div class="categoria">
-        <h3>💻 Tecnologia</h3>
-        <p>Sites, programação, informática e outros serviços.</p>
-    </div>
 
-    <div class="categoria">
-        <h3>📚 Educação</h3>
-        <p>Aulas, explicações e apoio escolar.</p>
-    </div>
+<div class="categoria">
 
-    <div class="categoria">
-        <h3>🔧 Serviços</h3>
-        <p>Encontre diferentes tipos de profissionais.</p>
-    </div>
+<h3>💻 Tecnologia</h3>
+
+<p>
+Programação, criação de sites e assistência informática.
+</p>
+
+</div>
+
+
+<div class="categoria">
+
+<h3>📚 Educação</h3>
+
+<p>
+Explicadores e serviços relacionados com educação.
+</p>
+
+</div>
+
+
+<div class="categoria">
+
+<h3>🔧 Reparações</h3>
+
+<p>
+Técnicos e profissionais de manutenção.
+</p>
+
+</div>
 
 </section>
+
 
 <section>
 
-    <h2>⭐ Serviços disponíveis</h2>
+<h2 class="titulo">
+Serviços disponíveis
+</h2>
 
-    <div class="anuncio">
-        <h3>💻 Criador de sites</h3>
-        <p>Criação de sites para pessoas e pequenos negócios.</p>
-        <p>📍 Maputo</p>
 
-        <button class="botao"
-            onclick="verServico('Criador de sites')">
-            Ver serviço
-        </button>
-    </div>
+<div id="listaServicos">
 
-    <div class="anuncio">
-        <h3>📚 Explicador</h3>
-        <p>Aulas e explicações para estudantes.</p>
-        <p>📍 Maputo</p>
 
-        <button class="botao"
-            onclick="verServico('Explicador')">
-            Ver serviço
-        </button>
-    </div>
+<div class="anuncio">
 
-    <div class="anuncio">
-        <h3>🔧 Técnico</h3>
-        <p>Serviços de reparação e assistência técnica.</p>
-        <p>📍 Maputo</p>
+<h3>💻 Criador de sites</h3>
 
-        <button class="botao"
-            onclick="verServico('Técnico')">
-            Ver serviço
-        </button>
-    </div>
+<p>
+Criação de sites para pequenos negócios.
+</p>
 
-    <div id="detalhes" class="detalhes"></div>
+<p>📍 Maputo</p>
+
+<button class="botao"
+onclick="verServico('Criador de sites')">
+Ver serviço
+</button>
+
+</div>
+
+
+<div class="anuncio">
+
+<h3>📚 Explicador</h3>
+
+<p>
+Aulas e explicações para estudantes.
+</p>
+
+<p>📍 Maputo</p>
+
+<button class="botao"
+onclick="verServico('Explicador')">
+Ver serviço
+</button>
+
+</div>
+
+
+<div class="anuncio">
+
+<h3>🔧 Técnico</h3>
+
+<p>
+Assistência e reparação de equipamentos.
+</p>
+
+<p>📍 Maputo</p>
+
+<button class="botao"
+onclick="verServico('Técnico')">
+Ver serviço
+</button>
+
+</div>
+
+
+</div>
+
+
+<div
+id="detalhes"
+class="detalhes">
+</div>
 
 </section>
+
 
 <section>
 
-    <h2>➕ Publicar um serviço</h2>
+<h2 class="titulo">
+Publicar um serviço
+</h2>
 
-    <div class="formulario">
 
-        <input
-            type="text"
-            id="nomeServico"
-            placeholder="Nome do serviço"
-        >
+<div class="formulario">
 
-        <input
-            type="text"
-            id="localServico"
-            placeholder="Localização"
-        >
+<input
+id="nomeServico"
+type="text"
+placeholder="Nome do serviço">
 
-        <textarea
-            id="descricaoServico"
-            placeholder="Descreva o seu serviço"
-            rows="4"
-        ></textarea>
 
-        <button class="botao" onclick="publicarServico()">
-            Publicar serviço
-        </button>
+<input
+id="categoriaServico"
+type="text"
+placeholder="Categoria">
 
-        <div id="mensagem" class="mensagem">
-            ✅ Serviço publicado
-        </div>
 
-    </div>
+<input
+id="localServico"
+type="text"
+placeholder="Localização">
+
+
+<textarea
+id="descricaoServico"
+rows="4"
+placeholder="Descrição do serviço">
+</textarea>
+
+
+<button
+class="botao"
+onclick="publicarServico()">
+
+Publicar serviço
+
+</button>
+
+</div>
 
 </section>
+
 
 <footer>
-    © 2026 Isac Web
+
+<p>
+© 2026 Isac Web
+</p>
+
+<p>
+Conectando clientes e prestadores de serviços.
+</p>
+
 </footer>
+
 
 <script>
 
-function pesquisar() {
 
-    let texto =
-        document.getElementById("pesquisa")
-        .value
-        .toLowerCase();
+/* PESQUISA */
 
-    let anuncios =
-        document.querySelectorAll(".anuncio");
+function pesquisar(){
 
-    anuncios.forEach(function(anuncio) {
+    const texto =
+    document
+    .getElementById("pesquisa")
+    .value
+    .toLowerCase();
 
-        let conteudo =
-            anuncio.innerText.toLowerCase();
+    const anuncios =
+    document.querySelectorAll(".anuncio");
 
-        if (conteudo.includes(texto)) {
-            anuncio.style.display = "block";
-        } else {
-            anuncio.style.display = "none";
-        }
+    anuncios.forEach(function(anuncio){
+
+        const conteudo =
+        anuncio.innerText.toLowerCase();
+
+        anuncio.style.display =
+        conteudo.includes(texto)
+        ? "block"
+        : "none";
 
     });
 
 }
 
-function verServico(nome) {
 
-    let detalhes =
-        document.getElementById("detalhes");
+/* DETALHES */
 
-    detalhes.style.display = "block";
+function verServico(nome){
 
-    detalhes.innerHTML =
-        "<h3>📋 " + nome + "</h3>" +
-        "<p>Este é um exemplo de serviço publicado no Isac Web.</p>" +
-        "<p>📍 Localização: Maputo</p>" +
-        "<button class='botao' onclick='enviarMensagem()'>💬 Enviar mensagem</button>";
+    const detalhes =
+    document.getElementById("detalhes");
+
+    detalhes.style.display="block";
+
+    detalhes.innerHTML = `
+
+        <h2>${nome}</h2>
+
+        <p>
+        Serviço disponível na plataforma Isac Web.
+        </p>
+
+        <button
+        class="botao"
+        onclick="abrirChat('${nome}')">
+
+        💬 Enviar mensagem
+
+        </button>
+
+    `;
+
+    detalhes.scrollIntoView({
+        behavior:"smooth"
+    });
 
 }
 
-function enviarMensagem() {
 
-    let detalhes =
-        document.getElementById("detalhes");
+/* CHAT */
 
-    detalhes.innerHTML +=
-        "<p style='margin-top:15px;font-weight:bold;'>💬 Área de mensagem criada!</p>";
+function abrirChat(nome){
+
+    const detalhes =
+    document.getElementById("detalhes");
+
+    detalhes.innerHTML += `
+
+        <div class="chat">
+
+            <h3>
+            💬 Chat com ${nome}
+            </h3>
+
+            <textarea
+            id="textoMensagem"
+            rows="4"
+            placeholder="Escreva a sua mensagem...">
+            </textarea>
+
+            <button
+            class="botao"
+            onclick="mandarMensagem()">
+
+            Enviar mensagem
+
+            </button>
+
+            <div id="mensagens"></div>
+
+        </div>
+
+    `;
 
 }
 
-function publicarServico() {
 
-    let nome =
-        document.getElementById("nomeServico").value;
+function mandarMensagem(){
 
-    let local =
-        document.getElementById("localServico").value;
+    const campo =
+    document.getElementById("textoMensagem");
 
-    let descricao =
-        document.getElementById("descricaoServico").value;
-
-    if (
-        nome === "" ||
-        local === "" ||
-        descricao === ""
-    ) {
-        alert("Preencha todos os campos.");
+    if(!campo)
         return;
+
+    const texto =
+    campo.value.trim();
+
+    if(texto==="")
+        return;
+
+    const mensagens =
+    document.getElementById("mensagens");
+
+    const nova =
+    document.createElement("div");
+
+    nova.className="mensagem";
+
+    nova.innerText=
+    "Você: "+texto;
+
+    mensagens.appendChild(nova);
+
+    campo.value="";
+
+}
+
+
+/* CRIAR CONTA */
+
+function abrirConta(){
+
+    const detalhes =
+    document.getElementById("detalhes");
+
+    detalhes.style.display="block";
+
+    detalhes.innerHTML = `
+
+        <h2>👤 Criar conta</h2>
+
+        <div class="formulario">
+
+            <input
+            id="nomeConta"
+            type="text"
+            placeholder="Seu nome">
+
+            <input
+            id="emailConta"
+            type="email"
+            placeholder="Seu e-mail">
+
+            <input
+            id="senhaConta"
+            type="password"
+            placeholder="Criar palavra-passe">
+
+            <button
+            class="botao"
+            onclick="criarConta()">
+
+            Criar conta
+
+            </button>
+
+        </div>
+
+    `;
+
+    detalhes.scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+async function criarConta(){
+
+    const nome =
+    document.getElementById("nomeConta").value;
+
+    const email =
+    document.getElementById("emailConta").value;
+
+    const senha =
+    document.getElementById("senhaConta").value;
+
+    if(!nome || !email || !senha){
+
+        mostrarAviso(
+            "Preencha todos os campos.",
+            false
+        );
+
+        return;
+
     }
 
-    let novoServico =
-        document.createElement("div");
+    await criarUsuarioFirebase(
+        nome,
+        email,
+        senha
+    );
 
-    novoServico.className = "anuncio";
+}
 
-    novoServico.innerHTML =
-        "<h3>🆕 " + nome + "</h3>" +
-        "<p>" + descricao + "</p>" +
-        "<p>📍 " + local + "</p>";
 
-    document
-        .querySelector(".anuncio")
-        .parentElement
-        .appendChild(novoServico);
+/* ENTRAR */
 
-    document.getElementById("mensagem").style.display = "block";
+function entrarConta(){
 
-    document.getElementById("nomeServico").value = "";
-    document.getElementById("localServico").value = "";
-    document.getElementById("descricaoServico").value = "";
+    const detalhes =
+    document.getElementById("detalhes");
+
+    detalhes.style.display="block";
+
+    detalhes.innerHTML = `
+
+        <h2>🔐 Entrar</h2>
+
+        <div class="formulario">
+
+            <input
+            id="loginEmail"
+            type="email"
+            placeholder="Seu e-mail">
+
+            <input
+            id="loginSenha"
+            type="password"
+            placeholder="Sua palavra-passe">
+
+            <button
+            class="botao"
+            onclick="fazerLogin()">
+
+            Entrar
+
+            </button>
+
+        </div>
+
+    `;
+
+    detalhes.scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+async function fazerLogin(){
+
+    const email =
+    document.getElementById("loginEmail").value;
+
+    const senha =
+    document.getElementById("loginSenha").value;
+
+    if(!email || !senha){
+
+        mostrarAviso(
+            "Preencha o e-mail e a palavra-passe.",
+            false
+        );
+
+        return;
+
+    }
+
+    await entrarUsuarioFirebase(
+        email,
+        senha
+    );
+
+}
+
+
+/* PUBLICAR SERVIÇO */
+
+function publicarServico(){
+
+    const nome =
+    document.getElementById("nomeServico").value.trim();
+
+    const categoria =
+    document.getElementById("categoriaServico").value.trim();
+
+    const local =
+    document.getElementById("localServico").value.trim();
+
+    const descricao =
+    document.getElementById("descricaoServico").value.trim();
+
+
+    if(!nome || !categoria || !local || !descricao){
+
+        mostrarAviso(
+            "Preencha todos os campos do serviço.",
+            false
+        );
+
+        return;
+
+    }
+
+
+    const lista =
+    document.getElementById("listaServicos");
+
+
+    const anuncio =
+    document.createElement("div");
+
+    anuncio.className="anuncio";
+
+
+    anuncio.innerHTML = `
+
+        <h3>🆕 ${nome}</h3>
+
+        <p>
+        ${descricao}
+        </p>
+
+        <p>
+        📂 ${categoria}
+        </p>
+
+        <p>
+        📍 ${local}
+        </p>
+
+        <button
+        class="botao"
+        onclick="verServico('${nome.replace(/'/g,"")}')">
+
+        Ver serviço
+
+        </button>
+
+    `;
+
+
+    lista.appendChild(anuncio);
+
+
+    document.getElementById("nomeServico").value="";
+    document.getElementById("categoriaServico").value="";
+    document.getElementById("localServico").value="";
+    document.getElementById("descricaoServico").value="";
+
+
+    mostrarAviso(
+        "✅ Serviço publicado!",
+        true
+    );
 
 }
 
